@@ -2,6 +2,11 @@ doctype html
 html
   head
     title= 'Stocks Charts'
+    link(rel='stylesheet' href='/dist/style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1')
   body
-    h1 Stocks Charts
+    .container
+      .section
+        h1.title.has-text-centered Stocks Charts
+    block scripts
+      script(src='/dist/Client.bundle.js')

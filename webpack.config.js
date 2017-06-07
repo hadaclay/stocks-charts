@@ -4,15 +4,20 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const javascript = {
   test: /\.(js)$/,
-  use: [{
-    loader: 'babel-loader',
-    options: { presets: ['es2015'] }
-  }],
+  use: [
+    {
+      loader: 'babel-loader',
+      options: { presets: ['es2015'] }
+    }
+  ]
 };
 
 const styles = {
   test: /\.(scss)$/,
-  use: ExtractTextPlugin.extract(['css-loader?sourceMap', 'sass-loader?sourceMap'])
+  use: ExtractTextPlugin.extract([
+    'css-loader?sourceMap',
+    'sass-loader?sourceMap'
+  ])
 };
 
 const uglify = new webpack.optimize.UglifyJsPlugin({
@@ -31,9 +36,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [
-    new ExtractTextPlugin('style.css')
-  ]
+  plugins: [new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;
