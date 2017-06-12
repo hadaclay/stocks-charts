@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+mongoose.Promose = global.Promise;
+
 require('dotenv').config({ path: 'variables.env' });
 
 const app = require('./app');

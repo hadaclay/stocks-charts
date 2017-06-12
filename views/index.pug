@@ -5,8 +5,10 @@ html
     link(rel='stylesheet' href='/dist/style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1')
   body
-    .container
+    .container.app
       .section
         h1.title.has-text-centered Stocks Charts
+        .chartArea(style={height: '400px'})
+          canvas#chart
     block scripts
       script(src='/dist/Client.bundle.js')

@@ -4,6 +4,6 @@ const stockController = require('../controllers/stockController');
 
 router.get('/', stockController.getStocks);
 
-router.get('/api/stocks/:symbol', stockController.getStocksAPI);
+router.get('/api/stock/:symbol', stockController.getStocksAPI);
 
 module.exports = router;

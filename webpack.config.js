@@ -26,7 +26,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 
 const config = {
   entry: {
-    App: './public/javascript/client.js'
+    Client: './public/javascript/client.js'
   },
   devtool: 'source-map',
   output: {

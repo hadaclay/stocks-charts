@@ -1,4 +1,4 @@
 node_modules/
 variables.env
 *.log
-public/dist
+public/dist/
