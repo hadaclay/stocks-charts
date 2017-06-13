@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.Promose = global.Promise;
 
 require('dotenv').config({ path: 'variables.env' });
+
+mongoose.connect(process.env.MONGO_URL);
+mongoose.Promose = global.Promise;
+require('./models/Stock');
 
 const app = require('./app');
 app.set('port', process.env.PORT || 7777);

@@ -3,7 +3,9 @@ const router = express.Router();
 const stockController = require('../controllers/stockController');
 
 router.get('/', stockController.getStocks);
+router.get('/api/stock/:symbol', stockController.getStock);
 
-router.get('/api/stock/:symbol', stockController.getStocksAPI);
+router.post('/api/add', stockController.addStock);
+router.delete('/api/stock/:id', stockController.deleteStock);
 
 module.exports = router;

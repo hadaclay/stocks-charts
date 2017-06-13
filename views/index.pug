@@ -10,5 +10,14 @@ html
         h1.title.has-text-centered Stocks Charts
         .chartArea(style={height: '400px'})
           canvas#chart
+        form(type="POST")#stockForm
+          .field.has-addons.has-text-centered
+            .control
+              input(placeholder="Stock Code").input
+            .control
+              button(type="submit").button Submit
+        if stocks
+          each stock in stocks
+            p= stock.symbol
     block scripts
       script(src='/dist/Client.bundle.js')
