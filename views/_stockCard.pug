@@ -1,0 +1,6 @@
+mixin stockCard(stock)
+  .column.is-4
+    .box
+      .stock-card
+        strong= stock.symbol
+        button(data-id=stock._id).delete.is-medium.deleteButton

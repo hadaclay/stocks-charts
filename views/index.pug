@@ -1,7 +1,9 @@
+include _stockCard
+
 doctype html
 html
   head
-    title= 'Stocks Charts'
+    title Stocks Charts
     link(rel='stylesheet' href='/dist/style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1')
   body
@@ -10,14 +12,18 @@ html
         h1.title.has-text-centered Stocks Charts
         .chartArea(style={height: '400px'})
           canvas#chart
-        form(type="POST")#stockForm
-          .field.has-addons.has-text-centered
-            .control
-              input(placeholder="Stock Code").input
-            .control
-              button(type="submit").button Submit
-        if stocks
-          each stock in stocks
-            p= stock.symbol
+        .card-container.columns
+          if stocks
+            each stock in stocks
+              +stockCard(stock)
+          .column.is-4
+            .box
+              form#stockForm
+                .field.has-addons
+                  .control
+                    input(placeholder='Stock Code').input
+                  .control
+                    button(type='submit').button Submit
     block scripts
+      script var stocks = !{JSON.stringify(stocks).replace(/<\//g, '<\\/')};
       script(src='/dist/Client.bundle.js')

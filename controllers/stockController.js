@@ -48,6 +48,6 @@ exports.getStock = async (req, res) => {
   const symbol = req.params.symbol;
 
   const request = await axios.get(generateRequest(symbol));
-  const stocks = request.data.dataset_data;
-  res.json(stocks.data);
+  const stock = request.data.dataset_data;
+  res.json(stock.data);
 };

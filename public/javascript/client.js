@@ -3,23 +3,13 @@ import axios from 'axios';
 
 import '../sass/style.scss';
 
+
+
+const stockData = [];
+
 const ctx = document.querySelector('#chart').getContext('2d');
-const stockForm = document.querySelector('#stockForm');
-stockForm.addEventListener('submit', handleAddStock);
-
-async function handleAddStock(e) {
-  e.preventDefault();
-
-  // Changing form layout will break this
-  const stockSymbol = this.elements[0].value;
-
-  const response = await axios.post('/api/add', { symbol: stockSymbol });
-  console.log(response.data);
-}
-
-function makeChart(ctx, dates, values) {
-  return new Chart(ctx, {
-    type: 'line',
+const chart = new Chart(ctx, {
+  type: 'line',
     data: {
       labels: [],
       datasets: []
@@ -32,14 +22,70 @@ function makeChart(ctx, dates, values) {
         }
       }
     }
-  });
+});
+
+const stockForm = document.querySelector('#stockForm');
+stockForm.addEventListener('submit', handleAddStock);
+
+document.querySelectorAll('.deleteButton').forEach(stock => {
+  stock.addEventListener('click', handleDeleteStock);
+});
+
+async function handleDeleteStock(e) {
+  try {
+    await axios.delete(`/api/stock/${this.dataset.id}`);
+  } catch(e) {
+    console.error(e);
+  }
 }
 
-async function getStocks() {
+async function handleAddStock(e) {
+  e.preventDefault();
+
+  // Changing form layout will break this
+  const stockSymbol = this.elements[0].value;
+
+  try {
+    const response = await axios.post('/api/add', { symbol: stockSymbol });
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+function addToChart(stockData) {
   // stockData[0] is the date
   // stockData[4] is the day's closing price
 
-  return makeChart(ctx);
+  chart.data.labels = stockData[0].map(d => d[0]); // Add Dates
+  chart.data.datasets = stockData.map((stock, i) => {
+    const closingData = stock.map(d => d[4]);
+    return {
+      label: stocks[i].symbol,
+      data: closingData,
+      fill: false
+    }
+  });
+  chart.update();
 }
 
-getStocks();
+async function getStockData() {
+  // Generate URLS for each active stock
+  const requestURLs = window.stocks.map(stock => {
+    return `/api/stock/${stock.symbol}`;
+  });
+  // Create promise array
+  const requests = requestURLs.map(url => axios.get(url));
+
+  try {
+    const requestData = await axios.all(requests);
+    const stockData = requestData.map(request => {
+      return request.data;
+    });
+
+    addToChart(stockData);
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+getStockData();

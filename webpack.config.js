@@ -15,8 +15,8 @@ const javascript = {
 const styles = {
   test: /\.(scss)$/,
   use: ExtractTextPlugin.extract([
-    'css-loader?sourceMap',
-    'sass-loader?sourceMap'
+    'css-loader',
+    'sass-loader'
   ])
 };
 
@@ -28,7 +28,6 @@ const config = {
   entry: {
     Client: './public/javascript/client.js'
   },
-  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: '[name].bundle.js'

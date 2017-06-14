@@ -8,3 +8,12 @@ body {
 .app {
   padding-top: 3em;
 }
+
+.card-container {
+  flex-wrap: wrap;
+}
+
+.stock-card {
+  display: flex;
+  justify-content: space-between;
+}
