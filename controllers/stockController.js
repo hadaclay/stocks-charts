@@ -7,7 +7,8 @@ function generateRequest(symbol) {
   const startDate = new Date(Date.now() - 3.154e10).toISOString().slice(0, 10);
   const endDate = new Date(Date.now()).toISOString().slice(0, 10);
 
-  return `https://www.quandl.com/api/v3/datasets/WIKI/${symbol}/data.json?api_key=${process.env.QUANDL_KEY}&order=asc&start_date=${startDate}&end_date=${endDate}`;
+  return `https://www.quandl.com/api/v3/datasets/WIKI/${symbol}/data.json?api_key=${process
+    .env.QUANDL_KEY}&order=asc&start_date=${startDate}&end_date=${endDate}`;
 }
 
 exports.getStocks = async (req, res) => {
@@ -15,7 +16,7 @@ exports.getStocks = async (req, res) => {
   try {
     const stocks = await Stock.find({}); // Get all stocks
     res.render('index', { stocks });
-  } catch(e) {
+  } catch (e) {
     res.status(500).end();
   }
 };
@@ -25,10 +26,14 @@ exports.addStock = async (req, res) => {
   const symbol = req.body.symbol;
   try {
     const stockRequest = await axios.get(generateRequest(symbol));
-    const stock = await (new Stock(req.body)).save();
+    const stock = await new Stock(req.body).save();
 
-    res.json(stockRequest.data.dataset_data.data);
-  } catch(e) {
+    res.json({
+      data: stockRequest.data.dataset_data.data,
+      _id: stock._id,
+      symbol: stock.symbol
+    });
+  } catch (e) {
     res.status(404).end();
   }
 };
@@ -38,7 +43,7 @@ exports.deleteStock = async (req, res) => {
     const id = req.params.id;
     await Stock.findByIdAndRemove(id).exec();
     res.status(204).end();
-  } catch(e) {
+  } catch (e) {
     res.status(500).end();
   }
 };

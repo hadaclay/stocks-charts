@@ -1,6 +1,6 @@
 mixin stockCard(stock)
-  .column.is-4
+  .column.is-4(id=stock._id)
     .box
       .stock-card
         strong= stock.symbol
-        button(data-id=stock._id).delete.is-medium.deleteButton
+        button(data-id=stock._id data-symbol=stock.symbol).delete.is-medium.deleteButton
