@@ -20,10 +20,6 @@ const styles = {
   ])
 };
 
-const uglify = new webpack.optimize.UglifyJsPlugin({
-  compress: { warnings: false }
-});
-
 const config = {
   entry: {
     Client: './public/js/client.js'
@@ -36,7 +32,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [uglify, new ExtractTextPlugin('style.css')]
+  plugins: [new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;
