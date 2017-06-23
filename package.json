@@ -1,13 +1,17 @@
 {
   "name": "stocks-charts",
   "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">= 7.6.0"
+  },
   "description": "Chart the stock market",
   "main": "start.js",
   "scripts": {
-    "start": "npm run assets && node ./start.js",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\"",
+    "start": "npm run build && node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
-    "assets": "webpack -w --display-max-modules 0"
+    "build": "webpack --display-max-modules 0",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\""
   },
   "dependencies": {
     "axios": "^0.16.2",

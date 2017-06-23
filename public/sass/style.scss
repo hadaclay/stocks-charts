@@ -1,16 +1,33 @@
 @import "~bulma";
 
 body {
-  background-color: #f7f7f7;
+  background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/graphy.png');
   min-height: 100vh;
 }
 
+footer {
+  padding-top: 1.2em;
+  a {
+    color: #2176c7;
+  }
+}
+
 .app {
-  padding-top: 3em;
+  padding-top: 1.2em;
+}
+
+.section {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(10, 10, 10, 0.05), 0 5px 10px rgba(10, 10, 10, 0.1), 0 1px 1px rgba(10, 10, 10, 0.2);
 }
 
 .card-container {
   flex-wrap: wrap;
+}
+
+.stocks-charts {
+  font-family: 'Comfortaa', cursive;
 }
 
 .stock-card {

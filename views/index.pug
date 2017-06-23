@@ -3,13 +3,15 @@ include _stockCard
 doctype html
 html
   head
-    title Stocks Charts
+    title Stock Charts
     link(rel='stylesheet' href='/dist/style.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Comfortaa')
+    link(rel='shortcut icon' type='image/png' href='icon.png')
     meta(name='viewport' content='width=device-width, initial-scale=1')
   body
     .container.app
       .section
-        h1.title.has-text-centered Stocks Charts
+        h1.stocks-charts.title.has-text-centered Stock Charts
         .chartArea(style={height: '400px'})
           canvas#chart
         .card-container.columns
@@ -24,6 +26,9 @@ html
                     input(placeholder='Stock Code').input
                   .control
                     button(type='submit').button Submit
+      footer.has-text-centered
+        p Made by 
+          a(href="https://hadaclay.com") @hadaclay
     block scripts
       script var stocks = !{JSON.stringify(stocks).replace(/<\//g, '<\\/')};
       script(src='/dist/Client.bundle.js')

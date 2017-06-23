@@ -14,10 +14,7 @@ const javascript = {
 
 const styles = {
   test: /\.(scss)$/,
-  use: ExtractTextPlugin.extract([
-    'css-loader',
-    'sass-loader'
-  ])
+  use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
 };
 
 const uglify = new webpack.optimize.UglifyJsPlugin({
@@ -35,7 +32,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [new ExtractTextPlugin('style.css')]
+  plugins: [uglify, new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;

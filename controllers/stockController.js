@@ -52,7 +52,11 @@ exports.getStock = async (req, res) => {
   // Get data for a single symbol
   const symbol = req.params.symbol;
 
-  const request = await axios.get(generateRequest(symbol));
-  const stock = request.data.dataset_data;
-  res.json(stock.data);
+  try {
+    const request = await axios.get(generateRequest(symbol));
+    const stock = request.data.dataset_data;
+    res.json(stock.data);
+  } catch(e) {
+    console.error(e);
+  }
 };
