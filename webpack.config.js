@@ -38,7 +38,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [uglify, new ExtractTextPlugin('style.css')]
+  plugins: [new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;
