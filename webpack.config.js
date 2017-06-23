@@ -14,7 +14,10 @@ const javascript = {
 
 const styles = {
   test: /\.(scss)$/,
-  use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+  use: ExtractTextPlugin.extract([
+    'css-loader?sourceMap',
+    'sass-loader?sourceMap'
+  ])
 };
 
 const uglify = new webpack.optimize.UglifyJsPlugin({
@@ -23,8 +26,9 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 
 const config = {
   entry: {
-    Client: './public/javascript/client.js'
+    Client: './public/js/client.js'
   },
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: '[name].bundle.js'
