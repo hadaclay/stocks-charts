@@ -7,7 +7,10 @@ const javascript = {
   use: [
     {
       loader: 'babel-loader',
-      options: { presets: ['babel-preset-env'] }
+      options: {
+        presets: ['es2015'],
+        plugins: ['transform-async-to-generator']
+      }
     }
   ]
 };
@@ -30,7 +33,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
-    filename: '[name].bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     rules: [javascript, styles]
