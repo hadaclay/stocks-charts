@@ -7,7 +7,7 @@ const javascript = {
   use: [
     {
       loader: 'babel-loader',
-      options: { presets: ['es2015'] }
+      options: { presets: ['babel-preset-env'] }
     }
   ]
 };
@@ -15,16 +15,19 @@ const javascript = {
 const styles = {
   test: /\.(scss)$/,
   use: ExtractTextPlugin.extract([
-    'css-loader?sourceMap',
-    'sass-loader?sourceMap'
+    'css-loader',
+    'sass-loader'
   ])
 };
 
+const uglify = new webpack.optimize.UglifyJsPlugin({
+  compress: { warnings: false }
+});
+
 const config = {
   entry: {
-    Client: './public/js/client.js'
+    Client: './public/javascript/client.js'
   },
-  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: '[name].bundle.js'
@@ -32,7 +35,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [new ExtractTextPlugin('style.css')]
+  plugins: [uglify, new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;
