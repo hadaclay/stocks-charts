@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const javascript = {
+  exclude: /node_modules/,
   test: /\.(js)$/,
   use: [
     {
