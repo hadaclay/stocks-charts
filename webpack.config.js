@@ -7,10 +7,13 @@ const javascript = {
   use: [
     {
       loader: 'babel-loader',
-      exclude: '/node_modules/',
       options: {
         presets: ['es2015'],
-        plugins: ['transform-async-to-generator', 'transform-runtime']
+        plugins: [['transform-runtime', {
+          helpers: false,
+          polyfill: true,
+          regenerator: true }],
+          'transform-async-to-generator']
       }
     }
   ]
