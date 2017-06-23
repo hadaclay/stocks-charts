@@ -7,6 +7,7 @@ const javascript = {
   use: [
     {
       loader: 'babel-loader',
+      exclude: '/node_modules/'
       options: {
         presets: ['es2015'],
         plugins: ['transform-async-to-generator', 'transform-runtime']
@@ -38,7 +39,7 @@ const config = {
   module: {
     rules: [javascript, styles]
   },
-  plugins: [new ExtractTextPlugin('style.css')]
+  plugins: [uglify, new ExtractTextPlugin('style.css')]
 };
 
 module.exports = config;
