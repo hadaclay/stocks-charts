@@ -9,7 +9,7 @@ const javascript = {
       loader: 'babel-loader',
       options: {
         presets: ['es2015'],
-        plugins: ['transform-async-to-generator']
+        plugins: ['transform-async-to-generator', 'transform-runtime']
       }
     }
   ]
