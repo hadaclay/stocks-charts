@@ -2,7 +2,7 @@
 Chart the closing prices of stock symbols for the past year. Results are fetched in real time and updated as users add or remove symbols.
 
 ## Uses
-- [Bulma](https://bulma.io) CSS framework
+- [Bulma](http://bulma.io) CSS framework
 - [Express](https://expressjs.com) Web framework
 - [Socket.io](https://socket.io/) Web sockets
 - [Quandl API](https://www.quandl.com/) Stock data API
